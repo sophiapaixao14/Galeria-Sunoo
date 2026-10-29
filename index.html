@@ -1,0 +1,1697 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fff5f8">
+<title>Petal Archive ♡ Sunoo</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap');
+
+:root {
+  --pink: #f5b7cb;
+  --pink-light: #ffe1eb;
+  --pink-pale: #fff3f7;
+  --pearl: #fffdfd;
+  --text: #62515a;
+  --muted: #a99aa2;
+  --line: rgba(219, 164, 185, .22);
+  --glass: rgba(255, 255, 255, .72);
+  --shadow: 0 12px 35px rgba(200, 145, 167, .13);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  background:
+    radial-gradient(ellipse at 12% 20%, #ffe3ed 0, transparent 30%),
+    radial-gradient(ellipse at 85% 65%, #fbe5f0 0, transparent 32%),
+    #fffafa;
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+button, input, textarea { font: inherit; }
+button { color: inherit; }
+
+button:focus-visible, input:focus-visible,
+textarea:focus-visible, a:focus-visible {
+  outline: 2px solid #d981a4;
+  outline-offset: 4px;
+}
+
+button { cursor: pointer; }
+
+::selection { background: #f7c6d8; color: #75485c; }
+
+/* Fundo decorativo */
+
+.background-glow {
+  position: fixed;
+  z-index: -3;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.glow {
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: .4;
+  animation: glowMove 16s ease-in-out infinite alternate;
+}
+
+.glow.one { background: #ffc9dd; top: -180px; left: -150px; }
+.glow.two { background: #efd6ee; right: -200px; bottom: 5%; animation-delay: -7s; }
+
+@keyframes glowMove {
+  to { transform: translate(80px, 55px) scale(1.2); }
+}
+
+.curtain {
+  position: absolute;
+  z-index: -1;
+  top: -115px;
+  width: 27%;
+  height: 300px;
+  border-radius: 0 0 50% 50%;
+  background: linear-gradient(150deg, #f9cfdd, #f2a9c3 70%, #fff0f5);
+  opacity: .75;
+  filter: drop-shadow(0 12px 18px #efc2d2);
+  animation: curtainFloat 9s ease-in-out infinite alternate;
+}
+
+.curtain.left { left: -10%; transform: rotate(12deg); }
+.curtain.right { right: -10%; transform: rotate(-12deg); animation-delay: -4s; }
+
+@keyframes curtainFloat {
+  to { border-radius: 0 0 45% 55%; height: 340px; }
+}
+
+#petals {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.petal {
+  position: absolute;
+  top: -30px;
+  color: #eaa4bd;
+  opacity: .65;
+  animation: fall linear infinite;
+  filter: drop-shadow(0 2px 5px #f4d0df);
+}
+
+@keyframes fall {
+  0% { transform: translate3d(0,-5vh,0) rotate(0deg); }
+  50% { transform: translate3d(55px,50vh,0) rotate(180deg); }
+  100% { transform: translate3d(-35px,110vh,0) rotate(360deg); }
+}
+
+.sparkle {
+  position: fixed;
+  z-index: -1;
+  width: 4px;
+  height: 4px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 9px 3px #f6c5d7;
+  animation: twinkle 3s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes twinkle {
+  from { opacity: .2; transform: scale(.7); }
+  to { opacity: 1; transform: scale(1.5); }
+}
+
+/* Cabeçalho */
+
+.topbar {
+  min-height: 78px;
+  padding: 15px 4%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  background: rgba(255,255,255,.62);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.brand {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.brand-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 15px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(140deg, white, #f9cfdd);
+  box-shadow: 4px 4px 12px #e7c6d4, -3px -3px 10px white;
+  font-size: 22px;
+}
+
+.brand-name { font-weight: 700; letter-spacing: -.5px; }
+.brand-name small {
+  display: block;
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: 2px;
+  font-weight: 500;
+  margin-top: 3px;
+}
+
+.search {
+  max-width: 390px;
+  width: 100%;
+  position: relative;
+}
+
+.search input {
+  width: 100%;
+  border: 1px solid rgba(255,255,255,.9);
+  background: rgba(250,244,247,.8);
+  border-radius: 30px;
+  padding: 12px 18px 12px 40px;
+  color: var(--text);
+  box-shadow: inset 2px 2px 5px rgba(215,185,198,.12), 2px 3px 9px white;
+}
+
+.search-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #d88ba9;
+}
+
+.top-actions { display: flex; gap: 10px; }
+
+.glass-btn {
+  border: 1px solid rgba(255,255,255,.95);
+  border-radius: 15px;
+  padding: 11px 17px;
+  background: linear-gradient(135deg, rgba(255,255,255,.95), rgba(250,214,228,.8));
+  box-shadow: 4px 5px 12px #e8cbd7, -3px -3px 9px white;
+  transition: .25s ease;
+}
+
+.glass-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px #e8c0d1;
+  background: linear-gradient(135deg, white, #f4c1d5);
+}
+
+.icon-btn { width: 43px; height: 43px; padding: 0; font-size: 17px; }
+
+/* Estrutura principal */
+
+.layout {
+  max-width: 1550px;
+  margin: auto;
+  padding: 30px 24px 60px;
+  display: grid;
+  grid-template-columns: 205px minmax(0, 1fr) 255px;
+  gap: 26px;
+  align-items: start;
+}
+
+.sidebar, .rightbar {
+  position: sticky;
+  top: 100px;
+}
+
+.panel {
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,.9);
+  border-radius: 25px;
+  box-shadow: var(--shadow);
+}
+
+.sidebar { padding: 22px 14px; }
+
+.sidebar-label {
+  padding: 0 10px;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--muted);
+  margin: 3px 0 17px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  text-decoration: none;
+  color: #887782;
+  border: 0;
+  border-radius: 15px;
+  padding: 13px 12px;
+  margin-bottom: 6px;
+  background: transparent;
+  transition: .22s ease;
+  font-size: 12px;
+}
+
+.nav-link span:first-child { font-size: 17px; }
+
+.nav-link:hover, .nav-link.active {
+  background: linear-gradient(110deg, #f8c4d7, #ffe6ef);
+  color: #87546b;
+  box-shadow: 0 5px 15px #f4d5e1;
+  transform: translateX(3px);
+}
+
+.sidebar-note {
+  margin-top: 27px;
+  padding: 16px 12px;
+  border-top: 1px solid var(--line);
+  font-size: 11px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* Conteúdo central */
+
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: #c77f9d;
+  text-transform: uppercase;
+}
+
+.page-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 12px;
+  margin: 9px 0 22px;
+}
+
+h1, h2, h3, p { margin-top: 0; }
+
+h1, .serif {
+  font-family: 'Playfair Display', serif;
+}
+
+h1 {
+  font-size: clamp(30px, 4vw, 43px);
+  line-height: 1.15;
+  font-weight: 500;
+  margin-bottom: 9px;
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+  margin-bottom: 0;
+}
+
+.count-pill {
+  border: 1px solid white;
+  border-radius: 25px;
+  padding: 9px 13px;
+  background: #fff0f5;
+  color: #b36e8b;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+/* Banner */
+
+.hero {
+  min-height: 235px;
+  padding: 30px;
+  border-radius: 28px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  background:
+    radial-gradient(ellipse at 80% 10%, rgba(255,255,255,.9), transparent 36%),
+    linear-gradient(120deg, #f8c5d7, #fce4ed 65%, #f4b6ce);
+  box-shadow: 0 12px 30px rgba(220,158,182,.18);
+  margin-bottom: 26px;
+}
+
+.hero::before, .hero::after {
+  content: "✿";
+  position: absolute;
+  color: rgba(255,255,255,.65);
+  font-size: 100px;
+  right: 25px;
+  bottom: -28px;
+  transform: rotate(-20deg);
+}
+
+.hero::after {
+  content: "✧";
+  right: 135px;
+  bottom: auto;
+  top: 10px;
+  font-size: 48px;
+}
+
+.hero-content { position: relative; z-index: 1; max-width: 72%; }
+
+.hero h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  max-width: 380px;
+  font-size: 12px;
+  line-height: 1.8;
+  color: #8f5e73;
+}
+
+.hero-art {
+  position: absolute;
+  right: 25px;
+  bottom: 10px;
+  font-size: clamp(60px, 9vw, 110px);
+  opacity: .75;
+  filter: drop-shadow(0 8px 12px #dca8bf);
+  animation: artFloat 4s ease-in-out infinite alternate;
+}
+
+@keyframes artFloat {
+  to { transform: translateY(-10px) rotate(5deg); }
+}
+
+.hero .glass-btn {
+  background: rgba(255,255,255,.65);
+  color: #8f5871;
+  padding: 10px 17px;
+  font-size: 11px;
+}
+
+/* Filtros */
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 29px 0 16px;
+}
+
+.section-heading h2 {
+  font-size: 17px;
+  margin: 0;
+  font-weight: 600;
+}
+
+.section-heading small {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.filter-btn {
+  border: 1px solid #fff;
+  padding: 9px 15px;
+  border-radius: 25px;
+  background: rgba(255,255,255,.65);
+  color: #93808b;
+  font-size: 11px;
+  transition: .2s;
+  box-shadow: 2px 3px 8px rgba(220,190,204,.15);
+}
+
+.filter-btn:hover, .filter-btn.active {
+  background: linear-gradient(120deg, #f5b6ce, #ffe5ee);
+  color: #854d67;
+  transform: translateY(-2px);
+}
+
+/* Galeria */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 17px;
+}
+
+.photo-card {
+  min-width: 0;
+  cursor: pointer;
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 8px;
+  border: 1px solid rgba(255,255,255,.9);
+  background: rgba(255,255,255,.72);
+  box-shadow: 0 6px 20px rgba(206,162,181,.11);
+  transition: transform .28s, box-shadow .28s;
+}
+
+.photo-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 28px rgba(206,140,170,.22);
+}
+
+.photo-frame {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  background: linear-gradient(145deg, #f8dce6, #f1b6cd);
+  aspect-ratio: 4 / 5;
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform .5s;
+}
+
+.photo-card:hover img { transform: scale(1.055); }
+
+.photo-placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 15px;
+  color: #a86f89;
+  background:
+    radial-gradient(circle at 20% 20%, white, transparent 25%),
+    linear-gradient(145deg, #ffeaf1, #f1bdd1);
+}
+
+.photo-placeholder span {
+  display: block;
+  font-size: 36px;
+  margin-bottom: 9px;
+}
+
+.photo-placeholder small {
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+.photo-frame img:not([src=""]) + .photo-placeholder { display: none; }
+
+.photo-number {
+  position: absolute;
+  top: 9px;
+  left: 9px;
+  background: rgba(255,255,255,.72);
+  backdrop-filter: blur(10px);
+  border: 1px solid white;
+  border-radius: 20px;
+  padding: 5px 9px;
+  font-size: 9px;
+}
+
+.photo-info { padding: 12px 6px 8px; }
+
+.photo-info h3 {
+  font-size: 12px;
+  margin-bottom: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.photo-info p {
+  font-size: 10px;
+  color: var(--muted);
+  margin-bottom: 0;
+  line-height: 1.6;
+}
+
+.photo-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+  margin-top: 10px;
+  color: #bd819b;
+  font-size: 10px;
+}
+
+/* Painel lateral direito */
+
+.rightbar { display: grid; gap: 18px; }
+
+.side-card { padding: 20px; }
+
+.side-title {
+  font-size: 14px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.side-title span { color: #d58ba8; }
+
+.profile {
+  text-align: center;
+  padding: 10px 0 17px;
+}
+
+.profile-avatar {
+  width: 76px;
+  height: 76px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 12px;
+  border-radius: 50%;
+  background: linear-gradient(140deg, white, #f6bfd3);
+  box-shadow: 4px 5px 13px #e6c6d4, -3px -3px 10px white;
+  font-size: 34px;
+}
+
+.profile h3 { font-size: 14px; margin-bottom: 5px; }
+.profile p { font-size: 10px; color: var(--muted); line-height: 1.7; }
+
+.stat-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.stat {
+  padding: 12px 5px;
+  text-align: center;
+  background: #fff4f8;
+  border-radius: 14px;
+}
+
+.stat strong { display: block; color: #b76f8c; font-size: 18px; }
+.stat small { font-size: 9px; color: var(--muted); }
+
+.message-preview {
+  border-radius: 15px;
+  background: linear-gradient(135deg, #fff0f6, #fffafa);
+  padding: 13px;
+  margin-bottom: 10px;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.message-preview strong { display: block; margin-bottom: 5px; color: #b16f8c; }
+.message-preview p { margin: 0; overflow-wrap: anywhere; }
+
+/* Mural de mensagens */
+
+.guestbook {
+  margin-top: 40px;
+  padding: clamp(20px, 4vw, 34px);
+  scroll-margin-top: 100px;
+}
+
+.guestbook-intro {
+  max-width: 500px;
+  margin-bottom: 22px;
+}
+
+.guestbook-intro h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 500;
+  margin: 8px 0;
+}
+
+.guestbook-intro p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.form-grid { display: grid; gap: 13px; }
+
+.field label {
+  display: block;
+  font-size: 11px;
+  margin-bottom: 7px;
+  color: #997488;
+}
+
+.field input, .field textarea {
+  display: block;
+  width: 100%;
+  border: 1px solid #f3dce5;
+  border-radius: 14px;
+  background: rgba(255,255,255,.85);
+  padding: 13px 15px;
+  color: var(--text);
+  transition: .2s;
+}
+
+.field input:focus, .field textarea:focus {
+  border-color: #e6a3bd;
+  box-shadow: 0 0 0 4px rgba(246,194,214,.2);
+  outline: none;
+}
+
+.field textarea { min-height: 100px; resize: vertical; }
+
+.form-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.form-footer small { color: var(--muted); font-size: 10px; }
+
+.guest-messages {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 12px;
+  margin-top: 26px;
+}
+
+.guest-message {
+  border: 1px solid white;
+  border-radius: 16px;
+  padding: 16px;
+  background: linear-gradient(135deg, rgba(255,255,255,.85), #fff0f6);
+  font-size: 12px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.guest-message strong { color: #b16f8c; }
+.guest-message p { margin: 7px 0 0; white-space: pre-wrap; }
+
+.empty-message {
+  grid-column: 1 / -1;
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+  padding: 25px 10px;
+}
+
+footer {
+  text-align: center;
+  padding: 25px 15px 35px;
+  font-size: 10px;
+  line-height: 2;
+  color: #ad91a0;
+}
+
+/* Visualizador das fotos */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(67, 43, 57, .56);
+  backdrop-filter: blur(14px);
+  padding: 24px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox.open { display: flex; }
+
+.viewer {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(270px, .85fr);
+  width: min(100%, 1000px);
+  max-height: 90vh;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.95);
+  border-radius: 27px;
+  background: rgba(255,249,252,.95);
+  box-shadow: 0 25px 80px rgba(40,20,30,.2);
+  animation: viewerIn .25s ease-out;
+}
+
+@keyframes viewerIn {
+  from { opacity: 0; transform: translateY(12px) scale(.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.viewer-image {
+  min-height: 350px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(145deg, #f8dce7, #f4c0d3);
+  overflow: hidden;
+}
+
+.viewer-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: 82vh;
+  object-fit: contain;
+}
+
+.viewer-image .photo-placeholder { position: absolute; }
+
+.viewer-arrow, .viewer-close {
+  border: 1px solid white;
+  background: rgba(255,255,255,.78);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 12px rgba(180,120,145,.15);
+  display: grid;
+  place-items: center;
+  transition: .2s;
+}
+
+.viewer-arrow:hover, .viewer-close:hover { background: white; transform: scale(1.06); }
+
+.viewer-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  font-size: 20px;
+}
+
+.viewer-arrow:hover { transform: translateY(-50%) scale(1.06); }
+.viewer-arrow.prev { left: 14px; }
+.viewer-arrow.next { right: 14px; }
+
+.viewer-close {
+  position: absolute;
+  z-index: 3;
+  top: 12px;
+  right: 12px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  font-size: 20px;
+}
+
+.viewer-details {
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.viewer-details h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 27px;
+  font-weight: 500;
+  margin: 8px 0 12px;
+}
+
+.viewer-description {
+  color: #8f7b87;
+  font-size: 12px;
+  line-height: 1.9;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.viewer-count { font-size: 10px; color: #bd819b; }
+
+.comment-area {
+  margin-top: 20px;
+  border-top: 1px solid var(--line);
+  padding-top: 17px;
+}
+
+.comment-area h3 { font-size: 13px; margin-bottom: 12px; }
+
+.comment-list { display: grid; gap: 9px; }
+
+.comment {
+  padding: 11px;
+  border-radius: 12px;
+  background: #fff0f6;
+  font-size: 11px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.comment strong { color: #b16f8c; }
+.comment p { margin: 3px 0 0; white-space: pre-wrap; }
+
+.comment-form { display: grid; gap: 9px; margin-top: 13px; }
+
+.comment-form input, .comment-form textarea {
+  width: 100%;
+  border: 1px solid #f1dce5;
+  border-radius: 12px;
+  padding: 11px 12px;
+  background: white;
+  color: var(--text);
+  font: inherit;
+  font-size: 11px;
+}
+
+.comment-form textarea { resize: vertical; min-height: 65px; }
+
+.comment-form .glass-btn { justify-self: start; }
+
+.no-comments { color: var(--muted); font-size: 11px; line-height: 1.7; }
+
+.toast {
+  position: fixed;
+  z-index: 100;
+  bottom: 25px;
+  left: 50%;
+  transform: translate(-50%, 20px);
+  opacity: 0;
+  pointer-events: none;
+  border: 1px solid white;
+  border-radius: 30px;
+  padding: 12px 20px;
+  background: rgba(255,246,250,.95);
+  box-shadow: var(--shadow);
+  color: #98617b;
+  font-size: 12px;
+  transition: .25s;
+}
+
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* Responsividade */
+
+@media (max-width: 1100px) {
+  .layout {
+    grid-template-columns: 175px minmax(0, 1fr);
+    gap: 20px;
+  }
+
+  .rightbar { display: none; }
+  .gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 700px) {
+  .topbar {
+    padding: 12px 16px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .brand-icon { width: 38px; height: 38px; }
+  .brand-name { font-size: 13px; }
+  .search { order: 3; max-width: none; flex-basis: 100%; }
+  .top-actions { margin-left: auto; }
+  .top-actions .glass-btn { width: 38px; height: 38px; }
+
+  .layout {
+    display: block;
+    padding: 22px 15px 35px;
+  }
+
+  .sidebar { display: none; }
+  .rightbar { display: grid; position: static; margin-top: 24px; }
+  .rightbar .side-card { padding: 18px; }
+
+  .hero {
+    min-height: 220px;
+    padding: 23px;
+    margin-bottom: 25px;
+  }
+
+  .hero-content { max-width: 82%; }
+  .hero-art { right: 10px; bottom: 5px; font-size: 66px; opacity: .45; }
+  .hero::before { right: -15px; }
+
+  .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .photo-card { padding: 6px; border-radius: 16px; }
+  .photo-frame { border-radius: 12px; }
+  .photo-info { padding: 10px 5px 7px; }
+  .photo-info h3 { font-size: 11px; }
+  .photo-info p { font-size: 10px; }
+
+  .page-heading { align-items: center; }
+  .count-pill { font-size: 10px; padding: 8px 10px; }
+  .guestbook { margin-top: 28px; padding: 22px 17px; }
+  .guest-messages { grid-template-columns: 1fr; }
+
+  .lightbox { padding: 10px; }
+  .viewer {
+    width: 100%;
+    max-height: 94vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    border-radius: 22px;
+  }
+
+  .viewer-image {
+    min-height: 0;
+    height: 42vh;
+    flex: 0 0 42vh;
+  }
+
+  .viewer-image img { max-height: 42vh; }
+  .viewer-details { padding: 21px 18px; overflow: visible; }
+  .viewer-details h2 { font-size: 23px; }
+  .viewer-description { font-size: 12px; }
+  .viewer-arrow { width: 37px; height: 37px; }
+}
+
+@media (max-width: 360px) {
+  .gallery { gap: 8px; }
+  .photo-info h3 { font-size: 10px; }
+  .hero { padding: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background-glow">
+  <div class="glow one"></div>
+  <div class="glow two"></div>
+  <div class="curtain left"></div>
+  <div class="curtain right"></div>
+</div>
+
+<div id="petals" aria-hidden="true"></div>
+
+<header class="topbar">
+  <a href="#" class="brand" aria-label="Petal Archive, início">
+    <div class="brand-icon">🌸</div>
+    <div class="brand-name">
+      PETAL ARCHIVE
+      <small>A LITTLE SUNOO UNIVERSE</small>
+    </div>
+  </a>
+
+  <label class="search">
+    <span class="search-icon">⌕</span>
+    <input id="searchInput" type="search" placeholder="Buscar uma foto, era ou memória..." aria-label="Buscar fotos">
+  </label>
+
+  <div class="top-actions">
+    <button class="glass-btn icon-btn" id="randomBtn" aria-label="Foto aleatória" title="Foto aleatória">✧</button>
+    <button class="glass-btn icon-btn" id="topGuestBtn" aria-label="Ir para o mural" title="Mural de fãs">♡</button>
+  </div>
+</header>
+
+<div class="layout">
+
+  <aside class="sidebar panel">
+    <div class="sidebar-label">EXPLORAR</div>
+
+    <a class="nav-link active" href="#inicio"><span>⌂</span> Início</a>
+    <a class="nav-link" href="#galeria"><span>▧</span> Galeria</a>
+    <a class="nav-link" href="#galeria" data-category-link="stage"><span>✧</span> Stage</a>
+    <a class="nav-link" href="#galeria" data-category-link="editorial"><span>♡</span> Editorial</a>
+    <a class="nav-link" href="#galeria" data-category-link="casual"><span>☁</span> Casual</a>
+    <a class="nav-link" href="#mural"><span>✉</span> Mural de fãs</a>
+
+    <div class="sidebar-note">
+      um cantinho feito de<br>
+      flores, memórias e carinho ♡
+      <br><br>
+      <span style="color:#d68daa">✿</span> made with love
+    </div>
+  </aside>
+
+  <main id="inicio">
+
+    <div class="eyebrow">YOUR LITTLE FLOWER GARDEN</div>
+
+    <div class="page-heading">
+      <div>
+        <h1>Sunoo's archive <span style="color:#e9a2bc">♡</span></h1>
+        <p class="subtitle">Um universo delicado para guardar momentos especiais.</p>
+      </div>
+      <div class="count-pill" id="headerCount">00 memórias</div>
+    </div>
+
+    <section class="hero">
+      <div class="hero-content">
+        <div class="eyebrow">WELCOME TO MY WORLD</div>
+        <h2>Little petals,<br>precious memories.</h2>
+        <p>
+          Cada fotografia guarda um pedacinho de uma história.
+          Escolha uma memória e venha explorar este pequeno universo.
+        </p>
+        <button class="glass-btn" id="exploreBtn">Explorar galeria ↗</button>
+      </div>
+      <div class="hero-art" aria-hidden="true">🌸</div>
+    </section>
+
+    <section id="galeria">
+      <div class="section-heading">
+        <h2>♡ Photo collection</h2>
+        <small id="resultCount">Suas memórias favoritas</small>
+      </div>
+
+      <div class="filters" aria-label="Filtrar fotos">
+        <button class="filter-btn active" data-category="all">Todas</button>
+        <button class="filter-btn" data-category="stage">Stage</button>
+        <button class="filter-btn" data-category="editorial">Editorial</button>
+        <button class="filter-btn" data-category="casual">Casual</button>
+        <button class="filter-btn" data-category="favorite">Favoritas ♡</button>
+      </div>
+
+      <div class="gallery" id="gallery"></div>
+    </section>
+
+    <section class="guestbook panel" id="mural">
+      <div class="guestbook-intro">
+        <div class="eyebrow">A LITTLE SPACE FOR YOU</div>
+        <h2>Letters in bloom <span style="color:#e6a0b9">✿</span></h2>
+        <p>
+          Este espaço também é seu. Deixe uma mensagem, compartilhe
+          uma lembrança ou conte o que torna este cantinho especial.
+        </p>
+      </div>
+
+      <form id="guestForm" class="form-grid">
+        <div class="field">
+          <label for="guestName">Seu nome ou apelido</label>
+          <input id="guestName" name="name" maxlength="35" placeholder="Como podemos te chamar?" required>
+        </div>
+
+        <div class="field">
+          <label for="guestText">Sua mensagem</label>
+          <textarea id="guestText" name="message" maxlength="500" placeholder="Escreva sua cartinha aqui..." required></textarea>
+        </div>
+
+        <div class="form-footer">
+          <small>♡ Mensagens respeitosas são sempre bem-vindas.</small>
+          <button class="glass-btn" type="submit">Enviar cartinha ✉</button>
+        </div>
+      </form>
+
+      <div class="section-heading">
+        <h2>♡ Little letters</h2>
+        <small id="guestCount">0 mensagens</small>
+      </div>
+
+      <div class="guest-messages" id="guestMessages"></div>
+    </section>
+
+  </main>
+
+  <aside class="rightbar">
+
+    <section class="panel side-card">
+      <div class="profile">
+        <div class="profile-avatar">🌸</div>
+        <h3>My little archive</h3>
+        <p>Um espaço de fã, feito com carinho.<br>Bem-vindo ao jardim!</p>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat">
+          <strong id="statPhotos">00</strong>
+          <small>MEMÓRIAS</small>
+        </div>
+        <div class="stat">
+          <strong id="statLetters">00</strong>
+          <small>CARTINHAS</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel side-card">
+      <div class="side-title">♡ Recadinhos <span>✧</span></div>
+      <div id="latestMessages">
+        <div class="message-preview">
+          <strong>Uma flor para você 🌷</strong>
+          <p>O mural está esperando suas cartinhas.</p>
+        </div>
+      </div>
+      <button class="glass-btn" style="width:100%;font-size:11px" id="sideGuestBtn">
+        Escrever mensagem ↗
+      </button>
+    </section>
+
+    <section class="panel side-card">
+      <div class="side-title">Little details <span>✿</span></div>
+      <p style="font-size:11px;line-height:1.9;color:var(--muted);margin:0">
+        <span style="color:#d88ba9">✧</span> Soft pink universe<br>
+        <span style="color:#d88ba9">✧</span> Memories &amp; flowers<br>
+        <span style="color:#d88ba9">✧</span> Made by a fan, for fans
+      </p>
+    </section>
+
+  </aside>
+</div>
+
+<footer>
+  made with ♡, petals and a little bit of magic<br>
+  <span>Petal Archive · a fan-made project</span>
+</footer>
+
+<!-- Visualizador de fotos -->
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualizador de fotos">
+  <div class="viewer">
+    <button class="viewer-close" id="closeViewer" aria-label="Fechar">×</button>
+
+    <div class="viewer-image" id="viewerImage">
+      <img id="largeImage" src="" alt="">
+      <div class="photo-placeholder" id="largePlaceholder">
+        <div><span>🌸</span><small>Adicione sua fotografia<br>na lista de imagens do código.</small></div>
+      </div>
+      <button class="viewer-arrow prev" id="prevPhoto" aria-label="Foto anterior">‹</button>
+      <button class="viewer-arrow next" id="nextPhoto" aria-label="Próxima foto">›</button>
+    </div>
+
+    <div class="viewer-details">
+      <div class="eyebrow">A MOMENT TO REMEMBER</div>
+      <h2 id="viewerTitle">Little memory ♡</h2>
+      <div class="viewer-count" id="viewerCount">01 / 08</div>
+
+      <p class="viewer-description" id="viewerDescription"></p>
+
+      <div class="comment-area">
+        <h3>♡ Comentários desta foto</h3>
+        <div class="comment-list" id="photoComments"></div>
+
+        <form class="comment-form" id="commentForm">
+          <input id="commentName" maxlength="35" placeholder="Seu nome ou apelido" required>
+          <textarea id="commentText" maxlength="300" placeholder="Deixe um comentário nesta foto..." required></textarea>
+          <button class="glass-btn" type="submit">Comentar ♡</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/*
+  COMO ADICIONAR SUAS FOTOS:
+
+  1. Crie uma pasta chamada "images" ao lado deste arquivo.
+  2. Coloque as fotos nela.
+  3. Troque os caminhos "images/sunoo-01.jpg" abaixo.
+  4. Personalize title, category e description.
+
+  Categorias aceitas: stage, editorial e casual.
+  Para usar uma foto como favorita, marque favorite: true.
+*/
+
+const photos = [
+  {
+    id: 1,
+    src: "images/Photo 1.jpg",
+    title: "A little sunshine",
+    category: "editorial",
+    favorite: true,
+    description: "Sunoo tirando selfie no meio do ensaio kkkkkk"
+  },
+  {
+    id: 2,
+    src: "images/Photo 2.jpg",
+    title: "Under the spotlight",
+    category: "stage",
+    favorite: false,
+    description: "Sunoo felizinho no palco, curtindo o momento."
+  },
+  {
+    id: 3,
+    src: "images/Photo 3.jpg",
+    title: "Soft pink dreams",
+    category: "editorial",
+    favorite: true,
+    description: "A MELHOR ÉPOCA DO SUNOO!! Pink hair!"
+  },
+  {
+    id: 4,
+    src: "images/Photo 4.jpg",
+    title: "A quiet afternoon",
+    category: "casual",
+    favorite: false,
+    description: "Sunoo tirando fotos do céu todo pitico."
+  },
+  {
+    id: 5,
+    src: "images/Photo 5.jpg",
+    title: "Blooming on stage",
+    category: "stage",
+    favorite: true,
+    description: "Sunoo quebrando tudo!"
+  },
+  {
+    id: 6,
+    src: "images/Photo 6.jpg",
+    title: "Little flower",
+    category: "casual",
+    favorite: false,
+    description: "Sunoo sorrindo para a câmera, radiante."
+  },
+  {
+    id: 7,
+    src: "images/Photo 7.jpg",
+    title: "A lovely moment",
+    category: "editorial",
+    favorite: false,
+    description: "Sunoo e Jungwon em Let me In!"
+  },
+  {
+    id: 8,
+    src: "images/Photo 8.jpg",
+    title: "Forever in bloom",
+    category: "stage",
+    favorite: true,
+    description: "Foto favorita. Sunoo em Blood Saga! Como esquecer o primeiro show do ENHYPEN no Brasil?"
+  }
+];
+
+const $ = (selector) => document.querySelector(selector);
+
+let activeCategory = "all";
+let visiblePhotos = [...photos];
+let currentPhotoId = null;
+let lastFocusedElement = null;
+let toastTimer;
+
+const memory = {
+  read(key, fallback) {
+    try {
+      const value = localStorage.getItem(key);
+      return value ? JSON.parse(value) : fallback;
+    } catch {
+      return fallback;
+    }
+  },
+  write(key, value) {
+    try {
+      localStorage.setItem(key, JSON.stringify(value));
+      return true;
+    } catch {
+      showToast("Não foi possível salvar. Verifique o armazenamento do navegador.");
+      return false;
+    }
+  }
+};
+
+const guestKey = "petal-archive-guestbook-v1";
+const commentKey = "petal-archive-comments-v1";
+
+let guestMessages = memory.read(guestKey, []);
+let photoComments = memory.read(commentKey, {});
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#039;"
+  })[char]);
+}
+
+function showToast(message) {
+  const toast = $("#toast");
+  toast.textContent = message;
+  toast.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove("show"), 2600);
+}
+
+function categoryName(category) {
+  return ({
+    stage: "Stage",
+    editorial: "Editorial",
+    casual: "Casual"
+  })[category] || category;
+}
+
+function photoCountLabel(count) {
+  return `${String(count).padStart(2, "0")} ${count === 1 ? "memória" : "memórias"}`;
+}
+
+function imageMarkup(photo, large = false) {
+  const src = escapeHTML(photo.src);
+  const title = escapeHTML(photo.title);
+
+  return `
+    <img src="${src}" alt="${title}" loading="${large ? "eager" : "lazy"}">
+    <div class="photo-placeholder">
+      <div>
+        <span>🌸</span>
+        <small>Adicione a imagem<br>em ${escapeHTML(photo.src)}</small>
+      </div>
+    </div>
+  `;
+}
+
+function attachImageFallback(container) {
+  const img = container.querySelector("img");
+  const placeholder = container.querySelector(".photo-placeholder");
+
+  function updateImageState() {
+    placeholder.style.display =
+      img.complete && img.naturalWidth > 0 ? "none" : "grid";
+  }
+
+  img.addEventListener("load", updateImageState);
+  img.addEventListener("error", updateImageState);
+  updateImageState();
+}
+
+function renderGallery() {
+  const query = $("#searchInput").value.trim().toLocaleLowerCase("pt-BR");
+
+  visiblePhotos = photos.filter(photo => {
+    const matchesCategory =
+      activeCategory === "all" ||
+      (activeCategory === "favorite" && photo.favorite) ||
+      photo.category === activeCategory;
+
+    const matchesSearch = [
+      photo.title,
+      photo.description,
+      categoryName(photo.category)
+    ].join(" ").toLocaleLowerCase("pt-BR").includes(query);
+
+    return matchesCategory && matchesSearch;
+  });
+
+  $("#gallery").innerHTML = visiblePhotos.length
+    ? visiblePhotos.map(photo => `
+      <article class="photo-card" data-photo-id="${photo.id}"
+        tabindex="0" role="button"
+        aria-label="Abrir foto: ${escapeHTML(photo.title)}">
+
+        <div class="photo-frame">
+          ${imageMarkup(photo)}
+          <span class="photo-number">${String(photo.id).padStart(2, "0")}</span>
+        </div>
+
+        <div class="photo-info">
+          <h3>${escapeHTML(photo.title)}</h3>
+          <p>${escapeHTML(categoryName(photo.category))} collection</p>
+          <div class="photo-meta">
+            <span>${photo.favorite ? "♡ Favorita" : "✧ Memory"}</span>
+            <span>↗ Abrir</span>
+          </div>
+        </div>
+      </article>
+    `).join("")
+    : `<div class="empty-message">Nenhuma memória encontrada. Que tal tentar outra busca? 🌸</div>`;
+
+  document.querySelectorAll(".photo-frame").forEach(attachImageFallback);
+
+  $("#headerCount").textContent = photoCountLabel(photos.length);
+  $("#resultCount").textContent =
+    `${visiblePhotos.length} ${visiblePhotos.length === 1 ? "resultado" : "resultados"}`;
+
+  $("#statPhotos").textContent = String(photos.length).padStart(2, "0");
+}
+
+function setCategory(category) {
+  activeCategory = category;
+
+  document.querySelectorAll(".filter-btn").forEach(button => {
+    const active = button.dataset.category === category;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
+
+  renderGallery();
+}
+
+$("#gallery").addEventListener("click", event => {
+  const card = event.target.closest("[data-photo-id]");
+  if (card) openViewer(Number(card.dataset.photoId));
+});
+
+$("#gallery").addEventListener("keydown", event => {
+  const card = event.target.closest("[data-photo-id]");
+  if (card && (event.key === "Enter" || event.key === " ")) {
+    event.preventDefault();
+    openViewer(Number(card.dataset.photoId));
+  }
+});
+
+document.querySelectorAll(".filter-btn").forEach(button => {
+  button.addEventListener("click", () => setCategory(button.dataset.category));
+});
+
+document.querySelectorAll("[data-category-link]").forEach(link => {
+  link.addEventListener("click", () => {
+    setCategory(link.dataset.categoryLink);
+  });
+});
+
+$("#searchInput").addEventListener("input", renderGallery);
+
+$("#exploreBtn").addEventListener("click", () => {
+  $("#galeria").scrollIntoView({ behavior: "smooth" });
+});
+
+function openViewer(photoId) {
+  const photo = photos.find(item => item.id === photoId);
+  if (!photo) return;
+
+  lastFocusedElement = document.activeElement;
+  currentPhotoId = photoId;
+
+  updateViewer();
+  $("#lightbox").classList.add("open");
+  document.body.style.overflow = "hidden";
+  $("#closeViewer").focus();
+}
+
+function updateViewer() {
+  const photo = photos.find(item => item.id === currentPhotoId);
+  if (!photo) return;
+
+  $("#viewerTitle").textContent = photo.title;
+  $("#viewerDescription").textContent = photo.description;
+  $("#viewerCount").textContent =
+    `${String(photos.findIndex(p => p.id === photo.id) + 1).padStart(2, "0")} / ${String(photos.length).padStart(2, "0")}`;
+
+  const imageContainer = $("#viewerImage");
+  $("#largeImage").src = photo.src;
+  $("#largeImage").alt = photo.title;
+  $("#largePlaceholder").style.display = "grid";
+
+  attachImageFallback(imageContainer);
+  renderComments();
+}
+
+function movePhoto(direction) {
+  const index = visiblePhotos.findIndex(photo => photo.id === currentPhotoId);
+  if (index < 0 || visiblePhotos.length === 0) return;
+
+  const nextIndex = (index + direction + visiblePhotos.length) % visiblePhotos.length;
+  currentPhotoId = visiblePhotos[nextIndex].id;
+  updateViewer();
+}
+
+function closeViewer() {
+  $("#lightbox").classList.remove("open");
+  document.body.style.overflow = "";
+  currentPhotoId = null;
+
+  if (lastFocusedElement && lastFocusedElement.isConnected) {
+    lastFocusedElement.focus();
+  }
+}
+
+$("#closeViewer").addEventListener("click", closeViewer);
+$("#prevPhoto").addEventListener("click", () => movePhoto(-1));
+$("#nextPhoto").addEventListener("click", () => movePhoto(1));
+
+$("#lightbox").addEventListener("click", event => {
+  if (event.target === $("#lightbox")) closeViewer();
+});
+
+document.addEventListener("keydown", event => {
+  if (!$("#lightbox").classList.contains("open")) return;
+
+  if (event.key === "Escape") closeViewer();
+  if (event.key === "ArrowLeft") movePhoto(-1);
+  if (event.key === "ArrowRight") movePhoto(1);
+});
+
+function renderComments() {
+  const comments = photoComments[currentPhotoId] || [];
+
+  $("#photoComments").innerHTML = comments.length
+    ? comments.map(comment => `
+      <div class="comment">
+        <strong>${escapeHTML(comment.name)}</strong>
+        <p>${escapeHTML(comment.message)}</p>
+      </div>
+    `).join("")
+    : `<p class="no-comments">Ainda não há comentários nesta foto. Seja a primeira pessoa a deixar carinho ♡</p>`;
+}
+
+$("#commentForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  if (currentPhotoId === null) return;
+
+  const name = $("#commentName").value.trim();
+  const message = $("#commentText").value.trim();
+
+  if (!name || !message) return;
+
+  const comments = photoComments[currentPhotoId] || [];
+  comments.push({ name, message });
+
+  if (!memory.write(commentKey, {
+    ...photoComments,
+    [currentPhotoId]: comments
+  })) return;
+
+  photoComments[currentPhotoId] = comments;
+
+  $("#commentText").value = "";
+  renderComments();
+  showToast("Seu comentário foi guardado neste navegador ♡");
+});
+
+/* Mural de fãs */
+
+function renderGuestbook() {
+  $("#guestMessages").innerHTML = guestMessages.length
+    ? [...guestMessages].reverse().map(item => `
+      <article class="guest-message">
+        <strong>♡ ${escapeHTML(item.name)}</strong>
+        <p>${escapeHTML(item.message)}</p>
+      </article>
+    `).join("")
+    : `<div class="empty-message">Seu mural começa com a primeira cartinha. ♡</div>`;
+
+  $("#guestCount").textContent =
+    `${guestMessages.length} ${guestMessages.length === 1 ? "mensagem" : "mensagens"}`;
+
+  $("#statLetters").textContent = String(guestMessages.length).padStart(2, "0");
+
+  const latest = [...guestMessages].reverse().slice(0, 2);
+
+  $("#latestMessages").innerHTML = latest.length
+    ? latest.map(item => `
+      <div class="message-preview">
+        <strong>♡ ${escapeHTML(item.name)}</strong>
+        <p>${escapeHTML(item.message)}</p>
+      </div>
+    `).join("")
+    : `<div class="message-preview"><strong>Uma flor para você 🌷</strong><p>O mural está esperando suas cartinhas.</p></div>`;
+}
+
+$("#guestForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  const name = $("#guestName").value.trim();
+  const message = $("#guestText").value.trim();
+
+  if (!name || !message) return;
+
+  const nextMessages = [...guestMessages, { name, message }];
+
+  if (!memory.write(guestKey, nextMessages)) return;
+
+  guestMessages = nextMessages;
+  $("#guestForm").reset();
+  renderGuestbook();
+  showToast("Sua cartinha foi guardada com carinho ♡");
+});
+
+function scrollToGuestbook() {
+  $("#mural").scrollIntoView({ behavior: "smooth" });
+  setTimeout(() => $("#guestName").focus({ preventScroll: true }), 450);
+}
+
+$("#topGuestBtn").addEventListener("click", scrollToGuestbook);
+$("#sideGuestBtn").addEventListener("click", scrollToGuestbook);
+
+$("#randomBtn").addEventListener("click", () => {
+  if (!visiblePhotos.length) {
+    showToast("Nenhuma foto encontrada nesta seleção.");
+    return;
+  }
+
+  const photo = visiblePhotos[Math.floor(Math.random() * visiblePhotos.length)];
+  openViewer(photo.id);
+});
+
+/* Pétalas e pontos de luz */
+
+const petalContainer = $("#petals");
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+if (!reducedMotion) {
+  for (let i = 0; i < 17; i++) {
+    const petal = document.createElement("span");
+    petal.className = "petal";
+    petal.textContent = ["✿", "❀", "✾"][i % 3];
+    petal.style.left = Math.random() * 100 + "%";
+    petal.style.fontSize = (10 + Math.random() * 13) + "px";
+    petal.style.animationDuration = (12 + Math.random() * 17) + "s";
+    petal.style.animationDelay = (-Math.random() * 25) + "s";
+    petalContainer.appendChild(petal);
+  }
+
+  for (let i = 0; i < 15; i++) {
+    const sparkle = document.createElement("span");
+    sparkle.className = "sparkle";
+    sparkle.style.left = Math.random() * 100 + "%";
+    sparkle.style.top = Math.random() * 100 + "%";
+    sparkle.style.animationDelay = (-Math.random() * 4) + "s";
+    sparkle.style.animationDuration = (2 + Math.random() * 3) + "s";
+    document.body.appendChild(sparkle);
+  }
+}
+
+/* Inicialização */
+
+renderGallery();
+renderGuestbook();
+</script>
+
+</body>
+</html>
